@@ -1,8 +1,12 @@
 package ba.unsa.etf.rpr.tutorijal03;
 
-public class Main {
+import java.util.*;
 
-    public static void main(String[] args) {
+public class Program
+{
+
+    public static void main(String[] args)
+	{
 	    System.out.println("Cilj vježbe je napraviti aplikaciju \"ETF Telefonski imenik\". Aplikacija se treba sastojati od sljedećih klasa:\n" +
 				"Apstraktna klasa TelefonskiBroj sadrži javnu apstraktnu metodu String ispisi() koja vraća broj u tekstualnoj formi pogodnoj za ispis, te apstraktnu metodu int hashCode() objašnjenu na predavanjima. Iz ove klase izvedene su sljedeće klase:\n" +
 				"FiksniBroj sadrži konstruktor FiksniBroj(Grad grad, String broj). Parametar broj je dio telefonskog broja bez pozivnog broja npr. \"123-456\", a grad je promjenljiva pobrojanog tipa koji označava pozivni broj koji treba koristiti npr.:\n" +
