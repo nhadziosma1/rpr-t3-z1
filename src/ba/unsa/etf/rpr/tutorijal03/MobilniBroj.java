@@ -14,7 +14,7 @@ public class MobilniBroj extends TelefonskiBroj
     @Override
     public String ispisi()
     {
-        return "0"+mob_mreza.toString()+mob_br; //da smo koristili "int" kao tip za "mob_mreza" ne bi mogli korisiti metodu "toString()"
+        return "0"+mob_mreza.toString()+"/"+mob_br; //da smo koristili "int" kao tip za "mob_mreza" ne bi mogli korisiti metodu "toString()"
                                               //jer je ona metoda klase Object iz koje su naslijedjenje sve druge klase, a P.O.D
                                               //tipovi nisu kalse
     }

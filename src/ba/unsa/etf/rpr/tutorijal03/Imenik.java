@@ -70,12 +70,12 @@ public class Imenik
 
             for(int i=0; i<vel; i++)
             {
-                Map.Entry par = (Map.Entry) it;
+                Map.Entry par = (Map.Entry) it.next();
 
                 if( ( (TelefonskiBroj)par.getValue() ).compareTo(broj)==0)
                     vrati= (String) par.getKey();
 
-                it.next();
+                //it.next();
             }
 
             /* II nacin
@@ -100,14 +100,13 @@ public class Imenik
 
         for(int i=0; i<tel_imenik.size(); i++)
         {
-            Map.Entry m_sk = (Map.Entry) it_sk;  //"m_sk" je jedan od uredjenih parova iz mape na koji "it" trenutno ukazuje
-
+            Map.Entry m_sk = (Map.Entry) it_sk.next();  //"m_sk" je jedan od uredjenih parova iz mape na koji "it" trenutno ukazuje
+                                                        //a da bi se dobio taj element, a ne objekt tipa Iterator, moramo primjeniti ".next()"
+                                                        // metodu koja vraca ono na sta it trenutno ukazuje i pomjera iterator za jedan
             String kljuc = (String)m_sk.getKey();
 
             if( kljuc.indexOf(s)==0)
-                vrati+="."+m_sk.getKey()+" - "+m_sk.getValue()+"\n";
-
-            it_sk.next();
+                vrati+=". "+m_sk.getKey()+" - "+( (TelefonskiBroj)m_sk.getValue() ).ispisi()+"\n";
         }
 
         return vrati;
@@ -122,7 +121,7 @@ public class Imenik
 
         for(int i=0; i<tel_imenik.size(); i++)
         {
-            Map.Entry mp = (Map.Entry) it_sk;
+            Map.Entry mp = (Map.Entry) it_sk.next();
 
             TelefonskiBroj tb = (TelefonskiBroj) mp.getValue();
 
@@ -130,11 +129,12 @@ public class Imenik
 
             if( br.startsWith(g.toString()))
                 sortiran.add( (String) mp.getKey());
-
-            it_sk.next();
         }
 
-        return sortiran;  //"sortiran" koji je tipa TreeSet se downcasta u Set
+        Set<String> vrati=null;
+        vrati.addAll(sortiran);
+
+        return vrati;  //"sortiran" koji je tipa TreeSet se downcasta u Set
     }
 
     Set<TelefonskiBroj> izGradaBrojevi(FiksniBroj.Grad g) // vraca brojeve za osobe iz grada "g", treba biti sortiran po stringu koji vrati "ispisi()"
@@ -148,7 +148,7 @@ public class Imenik
 
         for(int i=0; i<vel; i++)
         {
-            Map.Entry mp = (Map.Entry) it_s;
+            Map.Entry mp = (Map.Entry) it_s.next();
 
             TelefonskiBroj tb = (TelefonskiBroj) mp.getValue();
 
@@ -156,8 +156,6 @@ public class Imenik
 
             if(st.startsWith(g.toString()))
                 vrati.add( st );
-
-            it_s.next();
         }
         return vrati;
     }
