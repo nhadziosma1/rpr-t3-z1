@@ -33,20 +33,21 @@ package ba.unsa.etf.rpr.tutorijal03;
 
 import java.util.*;
 
-
 public class Imenik
 {
-    // HashMap<kljuc, vrijednost>
+    //      HashMap<kljuc, vrijednost>
     private HashMap<String, TelefonskiBroj> tel_imenik; //hashCode() se mora implementirati kada je kljuc licno definisanog tipa
 
     public Imenik()
     {
         tel_imenik= new HashMap<>(); //kapacitet mape je 16, a "load_factor" je 0.75
     }
+
     void dodaj(String ime, TelefonskiBroj broj)
     {
         tel_imenik.put(ime, broj);
     }
+
     String dajBroj(String ime) //vraca broj osobe s referencom "ime" u formi stringa, pozivacuji metod ispisi
     {
         TelefonskiBroj tel_br = tel_imenik.get(ime); //vraca referencu na clana mape sa kljucem "ime"
@@ -61,40 +62,104 @@ public class Imenik
 
         if(tel_imenik.containsValue(broj)==true)
         {
+            /* I nacin */
+            Set sk=tel_imenik.entrySet();  // "IME_MAPE.entrySet()" vraca "Set", te su svi clanovi Seta-a tipa "Map.Entry"
+            Iterator it=sk.iterator();   // na tip "Set" se moze primjeniti iterator, kao i za sve iz "Collection", za razliku od tipa "Map"
+
             int vel = tel_imenik.size();
 
             for(int i=0; i<vel; i++)
             {
+                Map.Entry par = (Map.Entry) it;
 
+                if( ( (TelefonskiBroj)par.getValue() ).compareTo(broj)==0)
+                    vrati= (String) par.getKey();
+
+                it.next();
             }
-        }
 
+            /* II nacin
+            for(Map.Entry<String, TelefonskiBroj> pristup : tel_imenik.entrySet())
+            {
+                if(pristup.getValue().compareTo(broj)==0 )
+                    vrati=pristup.getKey();
+            }*/
+        }
 
         return vrati;
     }
 
     String naSlovo(char s)  //varca sve brojeve u telefonskom imeniku za osobe cije ime pocinje na slovo "s", kao '1. - ime prezime, broj'
     {
-        int brojac=1;
+        Set st = tel_imenik.entrySet();
+        Iterator it_sk = st.iterator();
 
-        while(tel_imenik.isEmpty()==false)
+        Integer brojac=1;
+
+        String vrati = brojac.toString();  //"brojac" mora biti "Integer", a ne "int", jer "toString()" radi samo za ugrdjenje tipove
+
+        for(int i=0; i<tel_imenik.size(); i++)
         {
-            if(tel_imenik.containsValue(s)==true)
-            {
-                //////////////
-            }
+            Map.Entry m_sk = (Map.Entry) it_sk;  //"m_sk" je jedan od uredjenih parova iz mape na koji "it" trenutno ukazuje
 
+            String kljuc = (String)m_sk.getKey();
+
+            if( kljuc.indexOf(s)==0)
+                vrati+="."+m_sk.getKey()+" - "+m_sk.getValue()+"\n";
+
+            it_sk.next();
         }
+
+        return vrati;
     }
 
-    TreeSet<String> izGrada(Grad g) //vraca sva imena i prezimena osoba koje zive u gradu "g" i skup treba biti sortiran
+    Set<String> izGrada(FiksniBroj.Grad g) //vraca sva imena i prezimena osoba koje zive u gradu "g" i skup treba biti sortiran
     {
+        Set s = tel_imenik.entrySet();
+        Iterator it_sk = s.iterator();
 
+        TreeSet sortiran=null;
+
+        for(int i=0; i<tel_imenik.size(); i++)
+        {
+            Map.Entry mp = (Map.Entry) it_sk;
+
+            TelefonskiBroj tb = (TelefonskiBroj) mp.getValue();
+
+            String br =tb.ispisi();
+
+            if( br.startsWith(g.toString()))
+                sortiran.add( (String) mp.getKey());
+
+            it_sk.next();
+        }
+
+        return sortiran;  //"sortiran" koji je tipa TreeSet se downcasta u Set
     }
 
-    Set<TelefonskiBroj> izGradaBrojevi(Grad g) // vraca brojeve za osobe iz grada "g", treba biti sortiran po stringu koji vrati "ispisi()"
+    Set<TelefonskiBroj> izGradaBrojevi(FiksniBroj.Grad g) // vraca brojeve za osobe iz grada "g", treba biti sortiran po stringu koji vrati "ispisi()"
     {
+        Set s = tel_imenik.entrySet();
+        Iterator it_s = s.iterator();
 
+        int vel=tel_imenik.size();
+
+        TreeSet vrati=null;
+
+        for(int i=0; i<vel; i++)
+        {
+            Map.Entry mp = (Map.Entry) it_s;
+
+            TelefonskiBroj tb = (TelefonskiBroj) mp.getValue();
+
+            String st = tb.ispisi();
+
+            if(st.startsWith(g.toString()))
+                vrati.add( st );
+
+            it_s.next();
+        }
+        return vrati;
     }
 
 }

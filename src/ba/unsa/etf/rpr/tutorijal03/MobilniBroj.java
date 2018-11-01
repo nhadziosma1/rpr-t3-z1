@@ -11,14 +11,6 @@ public class MobilniBroj extends TelefonskiBroj
         mob_br = broj;
     }
 
-    /*@Override
-    public Object clone()
-    {
-        MobilniBroj novi = (MobilniBroj) super.clone();   //ne kontam zasto se stavlja super, super daje tip Object?????
-        novi.mob_br = this.mob_br.clone();
-        return novi;
-    }*/
-
     @Override
     public String ispisi()
     {

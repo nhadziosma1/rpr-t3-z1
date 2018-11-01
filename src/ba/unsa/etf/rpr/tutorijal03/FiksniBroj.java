@@ -9,52 +9,49 @@ package ba.unsa.etf.rpr.tutorijal03;
 
 public class FiksniBroj extends TelefonskiBroj
 {
+    public enum Grad
+    {
+        BIHAC, ORASJE, TUZLA, ZENICA, GORAZDE, TRAVNIK, MOSTAR, SIROKI_BRIJEG, SARAJEVO, LIVNO, BRCKO;
+    }
+
     private Grad g;
     private String broj;
 
-     public FiksniBroj(Grad grad, String broj)
+    public FiksniBroj(Grad grad, String broj)
     {
         g = grad;
         this.broj = broj;
     }
 
-    /*@Override
-    public Object clone()
-    {
-        FiksniBroj novi = (FiksniBroj) super.clone();   //ne kontam zasto se stavlja super, super daje tip Object?????
-        novi.g = this.g.clone();
-        return novi;
-    }*/
-
     @Override
     public String ispisi()
     {
-        String novi=null;
+        String novi= this.g.toString();
 
-        if(this.g.equals("BIHAC"))
+        if(novi.equals("BIHAC"))
             novi= "037/";
-        else if(this.g.equals("ORASJE"))
+        else if(novi.equals("ORASJE"))
             novi="031/";
-        else if(this.g.equals("TUZLA"))
+        else if(novi.equals("TUZLA"))
             novi="035/";
-        else if(this.g.equals("ZENICA"))
+        else if(novi.equals("ZENICA"))
             novi="032/";
-        else if(this.g.equals("GORAZDE"))
+        else if(novi.equals("GORAZDE"))
             novi="038/";
-        else if(this.g.equals("TRAVNIK"))
+        else if(novi.equals("TRAVNIK"))
             novi="030/";
-        else if(this.g.equals("MOSTAR"))
+        else if(novi.equals("MOSTAR"))
             novi="036/";
-        else if(this.g.equals("SIROKI_BRIJEG"))
+        else if(novi.equals("SIROKI_BRIJEG"))
             novi="039/";
-        else if(this.g.equals("SARAJEVO"))
+        else if(novi.equals("SARAJEVO"))
             novi="033/";
-        else if(this.g.equals("LIVNO"))
+        else if(novi.equals("LIVNO"))
             novi="034/";
-        else if(this.g.equals("BRCKO"))
+        else if(novi.equals("BRCKO"))
             novi="049/";
 
-        novi+=broj;
+        novi+=this.broj;
 
         return novi;
     }

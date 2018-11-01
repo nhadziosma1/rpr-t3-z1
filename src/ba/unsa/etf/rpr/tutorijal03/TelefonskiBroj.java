@@ -30,6 +30,6 @@ public abstract class TelefonskiBroj implements Comparable<TelefonskiBroj>
     public int compareTo(TelefonskiBroj tb)
     {
         return ispisi().compareTo(tb.ispisi());
-            //ispisi() varca string, za koji tio je definisan compareTo(), pa se nad njim odmah moze pozvati ista metoda
+            //ispisi() varca string, za koji je definisan compareTo(), pa se nad njim odmah moze pozvati ista metoda
     }
 }

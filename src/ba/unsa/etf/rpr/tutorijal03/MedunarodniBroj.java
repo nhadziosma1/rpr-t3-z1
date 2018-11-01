@@ -11,17 +11,6 @@ public class MedunarodniBroj extends TelefonskiBroj
         this.medj_br = broj;
     }
 
-    /*@Override
-    public Object clone()
-    {
-        MedunarodniBroj novi = (MedunarodniBroj) super.clone();
-
-        novi.medj_br = this.medj_br.clone();
-        novi.drzava = this.drzava.clone();
-
-        return novi;
-    }*/
-
     @Override
     public String ispisi()
     {
