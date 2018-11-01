@@ -7,24 +7,24 @@ enum Grad { SARAJEVO, TUZLA, ZENICA…}\*/
 
 package ba.unsa.etf.rpr.tutorijal03;
 
-public class FiksniBroj implements TelefonskiBroj, Cloneable<FiksniBroj>
+public class FiksniBroj extends TelefonskiBroj
 {
     private Grad g;
     private String broj;
 
-    public FiksniBroj(Grad grad, String broj)
+     public FiksniBroj(Grad grad, String broj)
     {
-        g = grad.clone();
-        this.broj = broj.clone();
+        g = grad;
+        this.broj = broj;
     }
 
-    @Override
+    /*@Override
     public Object clone()
     {
         FiksniBroj novi = (FiksniBroj) super.clone();   //ne kontam zasto se stavlja super, super daje tip Object?????
         novi.g = this.g.clone();
         return novi;
-    }
+    }*/
 
     @Override
     public String ispisi()

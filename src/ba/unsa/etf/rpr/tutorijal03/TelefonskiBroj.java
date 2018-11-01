@@ -21,8 +21,15 @@ produce distinct hash codes.*/
 
 package ba.unsa.etf.rpr.tutorijal03;
 
-public abstract class TelefonskiBroj
+public abstract class TelefonskiBroj implements Comparable<TelefonskiBroj>
 {
     public abstract String ispisi();
-    public abstract int hashCode(); //svaka klasa koja preklopi metodu "equals" mora preklopiti i metodu " int hashCode()"
+    //public abstract int hashCode();    //svaka klasa koja preklopi metodu "equals" mora preklopiti i metodu " int hashCode()"
+
+    @Override
+    public int compareTo(TelefonskiBroj tb)
+    {
+        return ispisi().compareTo(tb.ispisi());
+            //ispisi() varca string, za koji tio je definisan compareTo(), pa se nad njim odmah moze pozvati ista metoda
+    }
 }

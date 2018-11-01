@@ -1,23 +1,23 @@
 package ba.unsa.etf.rpr.tutorijal03;
 
-public class MobilniBroj implements TelefonskiBroj, Cloneable<MobilniBroj>
+public class MobilniBroj extends TelefonskiBroj
 {
     private Integer mob_mreza;
     private String mob_br;
 
-    public TelefonskiBroj(int mobilnaMreza, String broj)
+    public MobilniBroj(int mobilnaMreza, String broj)
     {
         mob_mreza = mobilnaMreza;
-        mob_br = broj.clone();
+        mob_br = broj;
     }
 
-    @Override
+    /*@Override
     public Object clone()
     {
         MobilniBroj novi = (MobilniBroj) super.clone();   //ne kontam zasto se stavlja super, super daje tip Object?????
         novi.mob_br = this.mob_br.clone();
         return novi;
-    }
+    }*/
 
     @Override
     public String ispisi()

@@ -1,17 +1,17 @@
 package ba.unsa.etf.rpr.tutorijal03;
 
-public class MedunarodniBroj implements TelefonskiBroj, Cloneable<MedunarodniBroj>
+public class MedunarodniBroj extends TelefonskiBroj
 {
     private String medj_br;
     private String drzava;
 
     public MedunarodniBroj(String drzava, String broj)
     {
-        this.drzava=drzava.clone();
-        this.medj_br=broj.clone();
+        this.drzava = drzava;
+        this.medj_br = broj;
     }
 
-    @Override
+    /*@Override
     public Object clone()
     {
         MedunarodniBroj novi = (MedunarodniBroj) super.clone();
@@ -20,7 +20,7 @@ public class MedunarodniBroj implements TelefonskiBroj, Cloneable<MedunarodniBro
         novi.drzava = this.drzava.clone();
 
         return novi;
-    }
+    }*/
 
     @Override
     public String ispisi()

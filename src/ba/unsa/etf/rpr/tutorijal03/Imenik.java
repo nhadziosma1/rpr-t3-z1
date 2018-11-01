@@ -37,7 +37,7 @@ import java.util.*;
 public class Imenik
 {
     // HashMap<kljuc, vrijednost>
-    private HashMap<String, TelefonskiBroj> tel_imenik;
+    private HashMap<String, TelefonskiBroj> tel_imenik; //hashCode() se mora implementirati kada je kljuc licno definisanog tipa
 
     public Imenik()
     {
@@ -47,17 +47,30 @@ public class Imenik
     {
         tel_imenik.put(ime, broj);
     }
-    String dajBroj(String ime) //vraca telefonski broj osobe pod imenom "ime" u formi stringa, pozivacuji metod ispisi
+    String dajBroj(String ime) //vraca broj osobe s referencom "ime" u formi stringa, pozivacuji metod ispisi
     {
         TelefonskiBroj tel_br = tel_imenik.get(ime); //vraca referencu na clana mape sa kljucem "ime"
-        String br_isp = tel_br.ispisi().clone();
+        String br_isp = tel_br.ispisi();
 
         return br_isp;
     }
 
     String dajIme(TelefonskiBroj broj)  //vraca ime osobe ciji telefonski broj je "broj", korisiti HashMapu za ovu operaciju
     {
+        String vrati=null;
 
+        if(tel_imenik.containsValue(broj)==true)
+        {
+            int vel = tel_imenik.size();
+
+            for(int i=0; i<vel; i++)
+            {
+
+            }
+        }
+
+
+        return vrati;
     }
 
     String naSlovo(char s)  //varca sve brojeve u telefonskom imeniku za osobe cije ime pocinje na slovo "s", kao '1. - ime prezime, broj'
@@ -67,10 +80,14 @@ public class Imenik
         while(tel_imenik.isEmpty()==false)
         {
             if(tel_imenik.containsValue(s)==true)
+            {
+                //////////////
+            }
+
         }
     }
 
-    Set<String> izGrada(Grad g) //vraca sva imena i prezimena osoba koje zive u gradu "g" i skup treba biti sortiran
+    TreeSet<String> izGrada(Grad g) //vraca sva imena i prezimena osoba koje zive u gradu "g" i skup treba biti sortiran
     {
 
     }
