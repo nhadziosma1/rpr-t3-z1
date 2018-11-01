@@ -117,7 +117,7 @@ public class Imenik
         Set s = tel_imenik.entrySet();
         Iterator it_sk = s.iterator();
 
-        TreeSet sortiran=null;
+        Set<String> sortiran = new TreeSet<>();
 
         for(int i=0; i<tel_imenik.size(); i++)
         {
@@ -125,16 +125,19 @@ public class Imenik
 
             TelefonskiBroj tb = (TelefonskiBroj) mp.getValue();
 
-            String br =tb.ispisi();
+            String ime = (String) mp.getKey();
 
-            if( br.startsWith(g.toString()))
-                sortiran.add( (String) mp.getKey());
+            if( tb instanceof FiksniBroj)
+            {
+                FiksniBroj fb = (FiksniBroj) tb;
+
+                if(fb.getGrad().getPozivniBroj() == g.getPozivniBroj())
+                sortiran.add( ime);
+            }
+
         }
 
-        Set<String> vrati=null;
-        vrati.addAll(sortiran);
-
-        return vrati;  //"sortiran" koji je tipa TreeSet se downcasta u Set
+        return sortiran;  //"sortiran" koji je tipa TreeSet se downcasta u Set
     }
 
     Set<TelefonskiBroj> izGradaBrojevi(FiksniBroj.Grad g) // vraca brojeve za osobe iz grada "g", treba biti sortiran po stringu koji vrati "ispisi()"
@@ -144,7 +147,7 @@ public class Imenik
 
         int vel=tel_imenik.size();
 
-        TreeSet vrati=null;
+        TreeSet<TelefonskiBroj> vrati= new TreeSet();
 
         for(int i=0; i<vel; i++)
         {
@@ -152,10 +155,15 @@ public class Imenik
 
             TelefonskiBroj tb = (TelefonskiBroj) mp.getValue();
 
-            String st = tb.ispisi();
+            String broj = tb.ispisi();
 
-            if(st.startsWith(g.toString()))
-                vrati.add( st );
+            if( tb instanceof FiksniBroj)
+            {
+                FiksniBroj fb = (FiksniBroj) tb;
+
+                if(fb.getGrad().getPozivniBroj() == g.getPozivniBroj())
+                    vrati.add(tb);
+            }
         }
         return vrati;
     }

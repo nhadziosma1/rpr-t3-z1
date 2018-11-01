@@ -11,11 +11,28 @@ public class FiksniBroj extends TelefonskiBroj
 {
     public enum Grad
     {
-        BIHAC, ORASJE, TUZLA, ZENICA, GORAZDE, TRAVNIK, MOSTAR, SIROKI_BRIJEG, SARAJEVO, LIVNO, BRCKO;
+        BIHAC("037"), ORASJE("031"), TUZLA("035"), ZENICA("032"), GORAZDE("038"), TRAVNIK("030"), MOSTAR("036"), SIROKI_BRIJEG("039"), SARAJEVO("033"), LIVNO("034"), BRCKO("049");
+
+        private String pozivni_broj;
+
+        private Grad(String s)  //kostruktor enuma ne moze primati enum
+        {
+            pozivni_broj = s;
+        }
+
+        public String getPozivniBroj()
+        {
+            return pozivni_broj;
+        }
     }
 
     private Grad g;
     private String broj;
+
+    public Grad getGrad()
+    {
+        return g;
+    }
 
     public FiksniBroj(Grad grad, String broj)
     {
