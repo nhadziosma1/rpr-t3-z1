@@ -7,7 +7,7 @@ enum Grad { SARAJEVO, TUZLA, ZENICA…}\*/
 
 package ba.unsa.etf.rpr.tutorijal03;
 
-public class FiksniBroj extends TelefonskiBroj implements Cloneable<FiksniBroj>
+public class FiksniBroj implements TelefonskiBroj, Cloneable<FiksniBroj>
 {
     private Grad g;
     private String broj;
