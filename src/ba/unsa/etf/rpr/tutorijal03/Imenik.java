@@ -58,7 +58,7 @@ public class Imenik
 
     String dajIme(TelefonskiBroj broj)  //vraca ime osobe ciji telefonski broj je "broj", korisiti HashMapu za ovu operaciju
     {
-        String vrati=null;
+        String vrati=new String();
 
         if(tel_imenik.containsValue(broj)==true)
         {
@@ -96,7 +96,7 @@ public class Imenik
 
         Integer brojac=1;
 
-        String vrati = brojac.toString();  //"brojac" mora biti "Integer", a ne "int", jer "toString()" radi samo za ugrdjenje tipove
+        String vrati = new String();  //"brojac" mora biti "Integer", a ne "int", jer "toString()" radi samo za ugrdjenje tipove
 
         for(int i=0; i<tel_imenik.size(); i++)
         {
@@ -106,7 +106,13 @@ public class Imenik
             String kljuc = (String)m_sk.getKey();
 
             if( kljuc.indexOf(s)==0)
-                vrati+=". "+m_sk.getKey()+" - "+( (TelefonskiBroj)m_sk.getValue() ).ispisi()+"\n";
+            {
+                vrati+= brojac.toString()+". "+m_sk.getKey()+" - "+( (TelefonskiBroj)m_sk.getValue() ).ispisi()+"\n";
+
+                brojac++;
+            }
+
+
         }
 
         return vrati;
@@ -132,9 +138,8 @@ public class Imenik
                 FiksniBroj fb = (FiksniBroj) tb;
 
                 if(fb.getGrad().getPozivniBroj() == g.getPozivniBroj())
-                sortiran.add( ime);
+                sortiran.add(ime);
             }
-
         }
 
         return sortiran;  //"sortiran" koji je tipa TreeSet se downcasta u Set

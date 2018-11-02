@@ -26,6 +26,8 @@ public class FiksniBroj extends TelefonskiBroj
         }
     }
 
+
+
     private Grad g;
     private String broj;
 
