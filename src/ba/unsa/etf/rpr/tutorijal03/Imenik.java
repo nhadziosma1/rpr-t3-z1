@@ -111,10 +111,7 @@ public class Imenik
 
                 brojac++;
             }
-
-
         }
-
         return vrati;
     }
 
@@ -137,7 +134,7 @@ public class Imenik
             {
                 FiksniBroj fb = (FiksniBroj) tb;
 
-                if(fb.getGrad().getPozivniBroj() == g.getPozivniBroj())
+                if(fb.getGrad().getPozivniBroj().equals( g.getPozivniBroj()) )
                 sortiran.add(ime);
             }
         }
@@ -166,7 +163,7 @@ public class Imenik
             {
                 FiksniBroj fb = (FiksniBroj) tb;
 
-                if(fb.getGrad().getPozivniBroj() == g.getPozivniBroj())
+                if(fb.getGrad().getPozivniBroj().equals( g.getPozivniBroj()))
                     vrati.add(tb);
             }
         }

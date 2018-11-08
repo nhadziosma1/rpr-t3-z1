@@ -168,7 +168,7 @@ public class Program
                         tb=medj_b;
                     }
 
-                    String ime_osobe_s_prosledjenim=im.dajIme(tb);
+                    String ime_osobe_s_prosledjenim = im.dajIme(tb);
 
                     System.out.println("Ime osobe sa brojem: "+tb.ispisi()+" je: "+ ime_osobe_s_prosledjenim);
                 }
