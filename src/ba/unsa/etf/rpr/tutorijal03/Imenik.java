@@ -63,19 +63,18 @@ public class Imenik
         if(tel_imenik.containsValue(broj)==true)
         {
             /* I nacin */
-            Set sk=tel_imenik.entrySet();  // "IME_MAPE.entrySet()" vraca "Set", te su svi clanovi Seta-a tipa "Map.Entry"
-            Iterator it=sk.iterator();   // na tip "Set" se moze primjeniti iterator, kao i za sve iz "Collection", za razliku od tipa "Map"
+            Set sk = tel_imenik.entrySet();  // "IME_MAPE.entrySet()" vraca "Set", te su svi clanovi Seta-a tipa "Map.Entry"
+            Iterator it = sk.iterator();   // na tip "Set" se moze primjeniti iterator, kao i za sve iz "Collection", za razliku od tipa "Map"
 
             int vel = tel_imenik.size();
 
             for(int i=0; i<vel; i++)
             {
-                Map.Entry par = (Map.Entry) it.next();
+                Map.Entry par = (Map.Entry) it.next();  //"it.next()" ujedno vraca trenutni element na koji ukazuje, te takodjer
+                                                        // pojera iterator za jedan prema naprijed
 
                 if( ( (TelefonskiBroj)par.getValue() ).compareTo(broj)==0)
                     vrati= (String) par.getKey();
-
-                //it.next();
             }
 
             /* II nacin
@@ -142,8 +141,9 @@ public class Imenik
         return sortiran;  //"sortiran" koji je tipa TreeSet se downcasta u Set
     }
 
-    Set<TelefonskiBroj> izGradaBrojevi(FiksniBroj.Grad g) // vraca brojeve za osobe iz grada "g", treba biti sortiran po stringu koji vrati "ispisi()"
-    {
+    Set<TelefonskiBroj> izGradaBrojevi(FiksniBroj.Grad g) // vraca brojeve za osobe iz grada "g", treba biti sortiran po stringu koji vrati
+    {                                                     // "ispisi()"
+
         Set s = tel_imenik.entrySet();
         Iterator it_s = s.iterator();
 
@@ -163,8 +163,12 @@ public class Imenik
             {
                 FiksniBroj fb = (FiksniBroj) tb;
 
-                if(fb.getGrad().getPozivniBroj().equals( g.getPozivniBroj()))
+                //poređenje se može izvršiti i preko enumovskih promjenjivih, preko operatora jednakosti fb.getGrad()== g
+                if(fb.getGrad() == g )
                     vrati.add(tb);
+
+                /*if(fb.getGrad().getPozivniBroj().equals( g.getPozivniBroj()))
+                    vrati.add(tb);*/
             }
         }
         return vrati;
